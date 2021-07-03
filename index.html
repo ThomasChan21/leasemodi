@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lease Modification 2013-2021</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="author" content="Thomas Chan">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <script src="js/leaflet.js"></script>
+    <script src="js/jquery.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+		.legend {
+            font-size: 16px;
+	        line-height: 24px;
+	        color: #333333;
+	        font-family: 'Open Sans', Helvetica, sans-serif;
+	        padding: 10px 14px;
+	        background-color: #FFFFFF ;
+	        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	        border-radius: 5px;
+	        max-width: 250px;
+	        border: 1px solid grey;
+        }
+        .legend p b {
+	        font-size: 20px;
+	        line-height: 24px;
+        }
+
+		
+    </style>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+
+// Tile layer
+var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
+var imagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'});
+
+
+// load GeoJSON from an external file
+var url = "https://geodata.gov.hk/gs/api/v1.0.0/geoDataQuery?q=%7Bv%3A%221%2E0%2E0%22%2Cid%3Aa0401247-ac87-4ae8-8bc7-104c0b74ca39%2Clang%3A%22ALL%22%7D"
+
+
+// Markers
+var pnt2013 = L.layerGroup();
+var pnt2014 = L.layerGroup();
+var pnt2015 = L.layerGroup();
+var pnt2016 = L.layerGroup();
+var pnt2017 = L.layerGroup();
+var pnt2018 = L.layerGroup();
+var pnt2019 = L.layerGroup();
+var pnt2020 = L.layerGroup();
+var pnt2021 = L.layerGroup();
+
+// Map
+var map = L.map('map', {center: [22.39994, 114.12597], zoom: 11, 
+	layers: [osm, pnt2013, pnt2014, pnt2015, pnt2016, pnt2017, pnt2018, pnt2019, pnt2020, pnt2021]});
+
+$.getJSON(url, function(data) {
+	$.each(data.features, function(key, value) {
+		if (value.properties.premiumEN != "Nil" && value.properties.premiumEN != "1,000") {
+			if (value.properties.executionYear == "2013") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2013);
+			} else if (value.properties.executionYear == "2014") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2014);
+			} else if (value.properties.executionYear == "2015") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2015);
+			} else if (value.properties.executionYear == "2016") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2016);
+			} else if (value.properties.executionYear == "2017") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2017);
+			} else if (value.properties.executionYear == "2018") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2018);
+			} else if (value.properties.executionYear == "2019") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2019);
+			} else if (value.properties.executionYear == "2020") {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2020);
+			} else {
+				L.geoJSON(value)
+				.bindPopup("<b>地點: </b>" + value.properties.locationZH + "<br>" 
+				+ "<b>地價（港幣）: </b>$" + value.properties.premiumEN + "<br>"
+				+ "<b>用途: </b>" + value.properties.userZH + "<br>"
+				+ "<b>住宅樓面總面積（平方米）: </b>" + value.properties.maxResidentialGFAZH + "<br>"
+				+ "<b>簽辦日期: </b>" + value.properties.executionDateZH)
+				.addTo(pnt2021);
+			};	
+		}
+	});
+});
+
+
+// Layer control
+var baseMaps = {
+    "OSM 圖層": osm,
+    "Imagery 圖層": imagery
+};
+var overlayMaps = {
+    "2013": pnt2013,
+	"2014": pnt2014,
+	"2015": pnt2015,
+	"2016": pnt2016,
+	"2017": pnt2017,
+	"2018": pnt2018,
+	"2019": pnt2019,
+	"2020": pnt2020,
+	"2021": pnt2021
+};
+L.control.layers(baseMaps, overlayMaps, {position: "topleft", collapsed: false}).addTo(map);
+
+
+// Create Leaflet Control Object for Legend
+var legend = L.control({position: "bottomleft"});
+
+// Function that runs when legend is added to map
+legend.onAdd = function(map) {
+
+	// Create Div Element and Populate it with HTML
+	var div = L.DomUtil.create("div", "legend");		    
+    div.innerHTML = 
+        '<p><b>2013-2021契約修訂個案</b></p><hr>' +
+        '<p>選取修改地契年份</p>' +
+        '<p>點擊地點獲取詳細資料!</p>' + 
+		'<p>備註: 不包括免地價及象徵式地價$1,000的個案</p><hr>' + 
+		'<p>資料來源: 地政總署</p>';
+
+	// Return the Legend div containing the HTML content
+	return div;
+
+};
+
+// Add Legend to Map
+legend.addTo(map);
+
+
+
+
+
+
+	</script>
+</body>
+</html>
+
