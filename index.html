@@ -105,7 +105,7 @@ var overlayMaps = {
 	"2020": pnt2020,
 	"2021": pnt2021
 };
-L.control.layers(baseMaps, overlayMaps, {position: "topleft", collapsed: false}).addTo(map);
+L.control.layers(baseMaps, overlayMaps, {position: "topleft", collapsed: true}).addTo(map);
 
 
 // Create Leaflet Control Object for Legend
@@ -118,10 +118,8 @@ legend.onAdd = function(map) {
 	var div = L.DomUtil.create("div", "legend");		    
     div.innerHTML = 
         '<p><b>2013-2021契約修訂個案</b></p><hr>' +
-        '<p>選取修改地契年份</p>' +
-        '<p>點擊地點獲取詳細資料!</p>' + 
-		'<p>備註: 不包括免地價及象徵式地價$1,000的個案</p><hr>' + 
-		'<p>資料來源: 地政總署</p>';
+	'<p>備註: 不包括免地價及象徵式地價$1,000的個案<br>' + 
+	'資料來源: 地政總署</p>';
 
 	// Return the Legend div containing the HTML content
 	return div;
